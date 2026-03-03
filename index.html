@@ -191,7 +191,7 @@ body {
 }
 
 /* ── RESET BUTTON ── */
-#btn-reset {
+#btn-reset, #btn-home {
   width: 100%;
   padding: 7px 0;
   font-family: var(--f);
@@ -207,6 +207,9 @@ body {
 }
 #btn-reset:hover  { background: #F5EDD0; transform: translateY(-1px); }
 #btn-reset:active { transform: translateY(1px); border-bottom-width: 2px; }
+
+#btn-home:hover  { background: #F5EDD0; transform: translateY(-1px); }
+#btn-home:active { transform: translateY(1px); border-bottom-width: 2px; }
 
 /* ── RIGHT: NEXT ── */
 #next-c { display:block; margin:0 auto; image-rendering:pixelated; }
@@ -444,7 +447,11 @@ canvas { image-rendering: pixelated; display: block; }
       <div id="bflash"></div>
       <div id="cpop"></div>
     </div>
-    <button id="btn-reset" onclick="resetGame()">↺ RESET GAME</button>
+    <!-- <button id="btn-reset" onclick="resetGame()">↺ RESET GAME</button> -->
+    <div style="display:flex;gap:6px;width:100%">
+      <button id="btn-reset" onclick="resetGame()" style="flex:1">↺ RESET</button>
+      <button id="btn-home" onclick="goHome()" style="flex:1">⌂ MENU</button>
+    </div>
   </div>
 
   <!-- RIGHT COLUMN -->
@@ -1007,6 +1014,15 @@ function resetGame() {
   startGame();
 }
 window.resetGame = resetGame;
+
+function goHome() {
+  RetroAudio.stopMusic();
+  alive = false;
+  if(animId) cancelAnimationFrame(animId);
+  document.getElementById('ov-go').style.display  = 'none';
+  document.getElementById('ov-start').style.display = 'flex';
+}
+window.goHome = goHome;
 
 $('btn-start').addEventListener('click', ()=>{ $('ov-start').style.display='none'; startGame(); });
 $('btn-retry').addEventListener('click', ()=>{ $('ov-go').style.display='none'; startGame(); });

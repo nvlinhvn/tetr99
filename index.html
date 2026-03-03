@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TETR99</title>
+<title>Tetr99 — Free Browser Block Puzzle Game</title>
+<meta name="description" content="High-speed tetromino stacker with garbage-line attacks. Practice hard drops, line clears, and piece holds — free, no download, runs in your browser.">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1010,5 +1011,20 @@ window.resetGame = resetGame;
 $('btn-start').addEventListener('click', ()=>{ $('ov-start').style.display='none'; startGame(); });
 $('btn-retry').addEventListener('click', ()=>{ $('ov-go').style.display='none'; startGame(); });
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Tetr99",
+  "description": "A high-speed falling block puzzle game with garbage-line attack simulation. Free, browser-based tetromino stacker.",
+  "genre": ["Puzzle", "Arcade"],
+  "playMode": "SinglePlayer",
+  "applicationCategory": "Game",
+  "operatingSystem": "Web Browser",
+  "url": "https://tetr99.com"
+}
+</script>
+
 </body>
 </html>

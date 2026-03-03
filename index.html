@@ -735,7 +735,7 @@ function spawn() {
   refill();
   const t=nq.shift(), sh=SHP[t].map(r=>[...r]);
   const x=((COLS-sh[0].length)/2)|0;
-  if(!valid(sh,x,0)){alive=false;doGameOver();}
+  // if(!valid(sh,x,0)){alive=false;doGameOver();} 
   return {t,ti:TYPE_IDX[t],sh,x,y:0};
 }
 function spawnOf(t) {
@@ -863,6 +863,12 @@ window.unpause = function() {
 // ═══ LOCK & CLEAR ════════════════════════════════════════
 function lock() {
   place(cur.sh,cur.x,cur.y,cur.ti);
+  // Game over: piece locked with blocks above the visible field
+  let topOut = false;
+  for(let r = 0; r < cur.sh.length; r++)
+    for(let c = 0; c < cur.sh[r].length; c++)
+      if(cur.sh[r][c] && (cur.y + r) <= 1) { topOut = true; }
+  if(topOut){ alive = false; doGameOver(); return; }
   const cl=clearFull();
   if(cl>0){
     combo++;

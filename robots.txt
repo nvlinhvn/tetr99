@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nvlinhvn.github.io/tetris99/sitemap.xml

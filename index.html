@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TETR99</title>
+<title>Tetr99 — Free Browser Block Puzzle Game</title>
+<meta name="description" content="High-speed tetromino stacker with garbage-line attacks. Practice hard drops, line clears, and piece holds — free, no download, runs in your browser.">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -20,6 +21,9 @@
   --pink:    #F060A0;
   --red:     #E53935;
   --blue:    #1565FF;
+/* Light Versions (Tinted) */
+  --teal-light: #2ECFB075;
+  --pink-light: #F060A075;
   --f: 'Share Tech Mono', monospace;
 }
 
@@ -140,8 +144,8 @@ body {
 }
 .aud-btn:hover  { filter: brightness(1.1); transform: translateY(-1px); }
 .aud-btn:active { transform: translateY(1px); border-bottom-width: 2px; }
-#btn-sfx, #ss-sfx { background: var(--teal); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
-#btn-bgm, #ss-bgm { background: var(--pink); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
+#btn-sfx, #ss-sfx { background: var(--teal-light); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
+#btn-bgm, #ss-bgm { background: var(--pink-light); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
 #btn-sfx.off, #ss-sfx.off { background: #999; }
 #btn-bgm.off, #ss-bgm.off { background: #999; }
 
@@ -338,7 +342,7 @@ canvas { image-rendering: pixelated; display: block; }
       <span class="ckey">← →</span><span class="cdesc">Move</span>
       <span class="ckey">↑</span>  <span class="cdesc">Rotate</span>
       <span class="ckey">↓</span>  <span class="cdesc">Soft Drop</span>
-      <span class="ckey">SPC</span><span class="cdesc">Hard Drop</span>
+      <span class="ckey">SPACE</span><span class="cdesc">Hard Drop</span>
       <span class="ckey">C</span>  <span class="cdesc">Hold piece</span>
       <span class="ckey">P</span>  <span class="cdesc">Pause</span>
     </div>
@@ -732,7 +736,7 @@ function spawn() {
   refill();
   const t=nq.shift(), sh=SHP[t].map(r=>[...r]);
   const x=((COLS-sh[0].length)/2)|0;
-  if(!valid(sh,x,0)){alive=false;doGameOver();}
+  // if(!valid(sh,x,0)){alive=false;doGameOver();} 
   return {t,ti:TYPE_IDX[t],sh,x,y:0};
 }
 function spawnOf(t) {
@@ -775,7 +779,7 @@ const keys={};
 let dasDir=0, dasMsHeld=0, arrAcc=0;
 
 document.addEventListener('keydown', e => {
-  if(keys[e.code]) return;
+  if(keys[e.code] && e.code !== 'ArrowDown') return;
   keys[e.code]=true;
   if(!alive&&!paused) return;
   switch(e.code){
@@ -860,6 +864,12 @@ window.unpause = function() {
 // ═══ LOCK & CLEAR ════════════════════════════════════════
 function lock() {
   place(cur.sh,cur.x,cur.y,cur.ti);
+  // Game over: piece locked with blocks above the visible field
+  let topOut = false;
+  for(let r = 0; r < cur.sh.length; r++)
+    for(let c = 0; c < cur.sh[r].length; c++)
+      if(cur.sh[r][c] && (cur.y + r) <= 1) { topOut = true; }
+  if(topOut){ alive = false; doGameOver(); return; }
   const cl=clearFull();
   if(cl>0){
     combo++;
@@ -1001,5 +1011,20 @@ window.resetGame = resetGame;
 $('btn-start').addEventListener('click', ()=>{ $('ov-start').style.display='none'; startGame(); });
 $('btn-retry').addEventListener('click', ()=>{ $('ov-go').style.display='none'; startGame(); });
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Tetr99",
+  "description": "A high-speed falling block puzzle game with garbage-line attack simulation. Free, browser-based tetromino stacker.",
+  "genre": ["Puzzle", "Arcade"],
+  "playMode": "SinglePlayer",
+  "applicationCategory": "Game",
+  "operatingSystem": "Web Browser",
+  "url": "https://tetr99.com"
+}
+</script>
+
 </body>
 </html>

@@ -20,6 +20,9 @@
   --pink:    #F060A0;
   --red:     #E53935;
   --blue:    #1565FF;
+/* Light Versions (Tinted) */
+  --teal-light: #2ECFB075;
+  --pink-light: #F060A075;
   --f: 'Share Tech Mono', monospace;
 }
 
@@ -140,8 +143,8 @@ body {
 }
 .aud-btn:hover  { filter: brightness(1.1); transform: translateY(-1px); }
 .aud-btn:active { transform: translateY(1px); border-bottom-width: 2px; }
-#btn-sfx, #ss-sfx { background: var(--teal); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
-#btn-bgm, #ss-bgm { background: var(--pink); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
+#btn-sfx, #ss-sfx { background: var(--teal-light); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
+#btn-bgm, #ss-bgm { background: var(--pink-light); text-shadow: 0 1px 0 rgba(0,0,0,.2); }
 #btn-sfx.off, #ss-sfx.off { background: #999; }
 #btn-bgm.off, #ss-bgm.off { background: #999; }
 
@@ -338,7 +341,7 @@ canvas { image-rendering: pixelated; display: block; }
       <span class="ckey">← →</span><span class="cdesc">Move</span>
       <span class="ckey">↑</span>  <span class="cdesc">Rotate</span>
       <span class="ckey">↓</span>  <span class="cdesc">Soft Drop</span>
-      <span class="ckey">SPC</span><span class="cdesc">Hard Drop</span>
+      <span class="ckey">SPACE</span><span class="cdesc">Hard Drop</span>
       <span class="ckey">C</span>  <span class="cdesc">Hold piece</span>
       <span class="ckey">P</span>  <span class="cdesc">Pause</span>
     </div>

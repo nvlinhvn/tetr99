@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js)
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FRZLLBBRVE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FRZLLBBRVE');
+</script> -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+
 <title>Tetr99 — Free Browser Block Puzzle Game</title>
 <meta name="description" content="High-speed tetromino stacker with garbage-line attacks. Practice hard drops, line clears, and piece holds — free, no download, runs in your browser.">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -452,6 +464,7 @@ canvas { image-rendering: pixelated; display: block; }
       <button id="btn-reset" onclick="resetGame()" style="flex:1">↺ RESET</button>
       <button id="btn-home" onclick="goHome()" style="flex:1">⌂ MENU</button>
     </div>
+
   </div>
 
   <!-- RIGHT COLUMN -->
@@ -493,6 +506,59 @@ canvas { image-rendering: pixelated; display: block; }
 
   </div>
 </div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
+<div style="
+  margin-top: 14px;
+  text-align: center;
+  font-family: 'Share Tech Mono', monospace;
+  color: #8B7E6A;
+">
+  <p style="font-size:.8rem;letter-spacing:.05em;line-height:2;opacity:.85">
+    Stack blocks. Clear lines. Survive.<br>
+    No sign-up. No ads. Just Play.
+  </p>
+
+  <div style="margin-top:10px">
+    <a href="https://www.buymeacoffee.com/linhvnguyen"
+       target="_blank" rel="noopener noreferrer"
+       style="
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+         padding: 7px 16px;
+         background: #E8A830;
+         border: 2px solid #2A2A2A;
+         border-bottom: 3px solid #2A2A2A;
+         border-radius: 20px;
+         font-family: 'Share Tech Mono', monospace;
+         font-size: .58rem;
+         letter-spacing: .1em;
+         color: #fff;
+         text-shadow: 0 1px 0 rgba(0,0,0,.2);
+         text-decoration: none;
+         box-shadow: 2px 2px 0 rgba(0,0,0,.12);
+         transition: transform .07s, filter .07s;
+       "
+       onmouseover="this.style.transform='translateY(-2px)';this.style.filter='brightness(1.08)'"
+       onmouseout="this.style.transform='';this.style.filter=''">
+      ☕ Buy me a coffee
+    </a>
+  </div>
+
+  <div style="margin-top:10px;font-size:.8rem;letter-spacing:.06em;line-height:2;opacity:.85">
+    <p>
+      © <span id="yr"></span>  by&nbsp;<a href="https://linhvnguyen.medium.com/" target="_blank" rel="noopener noreferrer"
+         style="color:#D08840;text-decoration:none;font-weight:700"
+         onmouseover="this.style.textDecoration='underline'"
+         onmouseout="this.style.textDecoration='none'">Linh V Nguyen</a>
+    </p>
+    <p>&nbsp;·&nbsp; Please feedback if any issue</p>
+    <!-- <p>© <span id="yr"></span> · Made with ☕ &amp; 🧱</p> -->
+  </div>
+</div>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
 
 <script>
 // ═══ AUDIO ENGINE (8-Bit Synth) ═══════════════════════════

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js)
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FRZLLBBRVE"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DGTHVQRFMK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-FRZLLBBRVE');
-</script> -->
+
+  gtag('config', 'G-DGTHVQRFMK');
+</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -514,14 +515,15 @@ canvas { image-rendering: pixelated; display: block; }
   font-family: 'Share Tech Mono', monospace;
   color: #8B7E6A;
 ">
-  <p style="font-size:.8rem;letter-spacing:.05em;line-height:2;opacity:.85">
+  <!-- <p style="font-size:.8rem;letter-spacing:.05em;line-height:2;opacity:.85">
     Stack blocks. Clear lines. Survive.<br>
     No sign-up. No ads. Just Play.
-  </p>
+  </p> -->
 
   <div style="margin-top:10px">
     <a href="https://www.buymeacoffee.com/linhvnguyen"
        target="_blank" rel="noopener noreferrer"
+       onclick="trackEvent('click_buy_me_a_coffee', { location: 'footer' })"
        style="
          display: inline-flex;
          align-items: center;
@@ -549,11 +551,12 @@ canvas { image-rendering: pixelated; display: block; }
   <div style="margin-top:10px;font-size:.8rem;letter-spacing:.06em;line-height:2;opacity:.85">
     <p>
       © <span id="yr"></span>  by&nbsp;<a href="https://linhvnguyen.medium.com/" target="_blank" rel="noopener noreferrer"
+         onclick="trackEvent('click_medium_blog', { location: 'footer' })"
          style="color:#D08840;text-decoration:none;font-weight:700"
          onmouseover="this.style.textDecoration='underline'"
          onmouseout="this.style.textDecoration='none'">Linh V Nguyen</a>
     </p>
-    <p>&nbsp;·&nbsp; Please feedback if any issue</p>
+    <!-- <p>&nbsp;·&nbsp; Please feedback if any issue</p> -->
     <!-- <p>© <span id="yr"></span> · Made with ☕ &amp; 🧱</p> -->
   </div>
 </div>
@@ -561,6 +564,11 @@ canvas { image-rendering: pixelated; display: block; }
 
 
 <script>
+
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') gtag('event', name, params);
+}
+
 // ═══ AUDIO ENGINE (8-Bit Synth) ═══════════════════════════
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const RetroAudio = {
@@ -1075,6 +1083,7 @@ function startGame() {
   animId=requestAnimationFrame(loop);
 }
 function resetGame() {
+  trackEvent('click_reset', { score: score, level: level });
   RetroAudio.stopMusic();
   $('ov-go').style.display='none';
   startGame();
@@ -1082,6 +1091,7 @@ function resetGame() {
 window.resetGame = resetGame;
 
 function goHome() {
+  trackEvent('click_menu', { score: score, level: level });
   RetroAudio.stopMusic();
   alive = false;
   if(animId) cancelAnimationFrame(animId);
@@ -1090,7 +1100,8 @@ function goHome() {
 }
 window.goHome = goHome;
 
-$('btn-start').addEventListener('click', ()=>{ $('ov-start').style.display='none'; startGame(); });
+$('btn-start').addEventListener('click', ()=>{ $('ov-start').style.display='none'; 
+  trackEvent('click_start', { speed: speedX, attack: atkMode });startGame(); });
 $('btn-retry').addEventListener('click', ()=>{ $('ov-go').style.display='none'; startGame(); });
 </script>
 

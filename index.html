@@ -775,7 +775,7 @@ const keys={};
 let dasDir=0, dasMsHeld=0, arrAcc=0;
 
 document.addEventListener('keydown', e => {
-  if(keys[e.code]) return;
+  if(keys[e.code] && e.code !== 'ArrowDown') return;
   keys[e.code]=true;
   if(!alive&&!paused) return;
   switch(e.code){

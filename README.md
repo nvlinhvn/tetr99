@@ -1,4 +1,4 @@
-# 🟦 TETRIS — Battle Trainer
+# 🟦 TETR99 — Battle Trainer
 
 > A fast, no-install, browser-based block-stacking game with **garbage-line attack simulation** — built to sharpen your reflexes for competitive play.
 
@@ -110,4 +110,7 @@ MIT — free to use, modify, and share.
 ---
 
 *Built with ☕ and block-stacking obsession.*
+
+---
+
 *Disclaimer: This is an vibe-coded project built for practice and portfolio building. It is not affiliated with, endorsed by, or monetized by any official trademark holders.*
